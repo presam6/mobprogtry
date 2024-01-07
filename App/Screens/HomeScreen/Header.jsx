@@ -15,8 +15,8 @@ export default function Header() {
                     <Image source={{ uri: user?.imageUrl }}
                         style={styles.userImage} />
                     <View>
-                        <Text style={{ color: Colors.WHITE }}>Welcome, </Text>
-                        <Text style={{ color: Colors.WHITE, fontSize: 17 }}>{user?.fullName}</Text>
+                        <Text style={{ color: Colors.WHITE, fontFamily: 'outfit' }}>Welcome, </Text>
+                        <Text style={{ color: Colors.WHITE, fontSize: 17, fontFamily: 'outfit-bold'}}>{user?.fullName}</Text>
                     </View>
                 </View>
                 <Feather name="book" size={24} color="white" />
