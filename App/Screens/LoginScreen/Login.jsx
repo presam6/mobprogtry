@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.BLACK,
   },
   subContainer: {
-    width: '112.4%',
+    width: '100%',
     backgroundColor: Colors.PRIMARY,
     height: '70%',
     marginTop: -20,
