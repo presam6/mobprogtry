@@ -3,6 +3,7 @@ import React, { useEffect, useState, } from 'react'
 import GlobalAPI from '../../Utils/GlobalAPI'
 import Heading from '../../Components/Heading';
 import * as Location from 'expo-location';
+import Colors from '../../Utils/Colors';
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
     // Haversine formula to calculate distance between two coordinates
@@ -59,9 +60,9 @@ export default function Slider() {
                         <Image source={{ uri: item?.image?.url }}
                             style={styles.sliderImages}
                         />
-                        <Text style={{ fontSize: 15, fontFamily: 'outfit', textAlign: 'center', marginTop: 5, }}>
+                        <Text style={{ fontSize: 15, fontFamily: 'outfit', textAlign: 'center',}}>
                             {item?.name} <Text> </Text>
-                            <Text style={{ fontSize: 13, fontFamily: 'outfit', textAlign: 'center', color: 'gray' }}>
+                            <Text style={{ fontSize: 13, fontFamily: 'outfit', textAlign: 'center', color: Colors.GRAY }}>
                                 {calculateDistance(1.5, 1.5, item?.location?.latitude, item?.location?.longitude)} M away
                             </Text>
                         </Text>

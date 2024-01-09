@@ -26,7 +26,7 @@ export default function BusinessList() {
                 data={businessList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item, index }) => (
+                renderItem={({ item, index }) => index <=2 && (
                     <View style={{marginRight: 10,}}>
                         <BusinessListItemSmall business={item}/>
                     </View>

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 10,
         padding: 10,
-        paddingTop: 25,
+        paddingTop: 20,
         backgroundColor: Colors.PRIMARY,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         gap: 5,
-        marginBottom: 10,
+        marginBottom: 5,
     },
     searchBTN:{
         backgroundColor: Colors.WHITE,
