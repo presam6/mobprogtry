@@ -4,5 +4,8 @@ export default {
     WHITE: '#ffffff',
     LIGHT_GRAY: '#EDEDED',
     GRAY: '#808080',
-    LIGHT_PRIMARY: '#f3ebff'
+    LIGHT_PRIMARY: '#f3ebff',
+    STARBUCKS_GREEN: '#00704A',
+    HARDWARE_YELLOW: '#FDB900',
+    GAISANO_BLUE: '#143796',
 }

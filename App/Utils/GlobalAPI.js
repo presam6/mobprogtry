@@ -64,7 +64,7 @@ const getBusinessList = async () => {
 const getBusinessListByCategory = async (category) => {
   const query = gql`
   query getBusinessList {
-    businessLists(where: {category: {name: " `+ category +` "}}) {
+    businessLists(where: {category: {name: "`+ category +`"}}) {
       id
       name
       email

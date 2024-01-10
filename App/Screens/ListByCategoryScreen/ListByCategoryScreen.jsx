@@ -21,6 +21,7 @@ export default function ListByCategoryScreen() {
     GlobalAPI.getBusinessListByCategory(param.category)
       .then(resp => {
         console.log(resp.businessLists);
+        setBusinessList(resp.businessLists);
       })
   }
   return (
@@ -35,7 +36,7 @@ export default function ListByCategoryScreen() {
       <FlatList
       data={businessList}
       renderItem={({item, index}) => (
-        <BusinessListItem/>
+        <BusinessListItem business={item}/>
       )}
       />
     </View>

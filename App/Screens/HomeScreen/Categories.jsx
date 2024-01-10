@@ -6,8 +6,10 @@ import Colors from '../../Utils/Colors';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Categories() {
+
   const [categories, setCategories] = useState([]);
   const navigation = useNavigation();
+
   useEffect(() => {
     getCategories();
   }, [])
@@ -16,9 +18,13 @@ export default function Categories() {
       setCategories(resp?.categories);
     })
   }
+
   return (
+
     <View>
+
       <Heading text={'Categories'} isViewAll={false} />
+
       <FlatList
         data={categories}
         numColumns={4}
@@ -26,9 +32,10 @@ export default function Categories() {
           <TouchableOpacity style={styles.container} onPress={() => navigation.push('business-list', {
             category:item.name
           })}>
+
             <View style={styles.iconContainer}>
               <Image source={{ uri: item?.icon?.url }}
-                style={{ width: 30, height: 35 }}
+                style={{ width: 35, height: 35 }}
               />
             </View>
             <Text style={{fontFamily: 'outfit-medium', textAlign: 'center', fontSize: 12, marginTop: 5}}>
@@ -36,6 +43,7 @@ export default function Categories() {
           </TouchableOpacity>
         )}
       />
+
     </View>
   )
 }
