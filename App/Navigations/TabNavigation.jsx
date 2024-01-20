@@ -35,7 +35,7 @@ export default function TabNavigation() {
                 tabBarLabel: ({ color }) => (
                     <Text style={{
                         color:color, fontSize: 12, fontWeight: "bold", marginTop: -7,
-                    }}>Booking</Text>
+                    }}>Orders</Text>
                 ),
                 tabBarIcon: ({ color, size }) => (
                     <Feather name="book" size={size} color={color} />
