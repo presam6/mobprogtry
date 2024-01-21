@@ -106,10 +106,39 @@ const createOrder = async (data) => {
   return result;
 }
 
+const getUserOrders = async (userEmail) => {
+  const query = gql`
+  query getUserOrder {
+    orders(orderBy: updatedAt_DESC, 
+      where: {userEmail: "`+ userEmail + `"}) {
+      time
+      date
+      userName
+      userEmail
+      orderStatus
+      businessList {
+        id
+        image {
+          url
+        }
+        name
+        address
+        contactPerson
+        email
+        about
+      }
+    }
+  }
+  `
+  const result = await request(MASTER_URL, query);
+  return result;
+}
+
 export default {
   getSlider,
   getCategories,
   getBusinessList,
   getBusinessListByCategory,
   createOrder,
+  getUserOrders,
 }

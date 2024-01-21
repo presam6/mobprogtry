@@ -2,18 +2,16 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '../../Utils/Colors'
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export default function BusinessListItem({ business }) {
+export default function BusinessListItem({ business, order }) {
 
   const navigation = useNavigation();
-
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.push('business-detail',
-    {
-      business:business
-    })}>
+      {
+        business: business
+      })}>
 
       <Image source={{ uri: business?.image?.url }}
         style={styles.image}
@@ -21,12 +19,45 @@ export default function BusinessListItem({ business }) {
 
       <View style={styles.subContainer}>
         <Text style={{ fontFamily: 'outfit-bold', fontSize: 15 }}> {business.name} </Text>
+
         <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 12 }}>
           <Ionicons name="person" size={12} color={Colors.PRIMARY} /> {business.contactPerson} </Text>
-        <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 12 }}>
-          <MaterialIcons name="alternate-email" size={12} color={Colors.PRIMARY} marginBottom={10} /> {business.email} </Text>
-        <Text style={{ fontFamily: 'outfit', fontSize: 12, color: Colors.GRAY }}>
-          <Ionicons name="location-sharp" size={15} color={Colors.PRIMARY} /> {business.address} </Text>
+
+        {!order?.id ? <Text style={{ fontFamily: 'outfit', fontSize: 12, color: Colors.GRAY }}>
+          <Ionicons name="location-sharp" size={15} color={Colors.PRIMARY} />
+          {business.address} </Text>
+          :
+          <Text
+            style={[
+              {
+                padding: 5,
+                borderRadius: 5,
+                fontSize: 14,
+                alignSelf: 'flex-start',
+              },
+              order?.orderStatus === 'Completed' && {
+                backgroundColor: Colors.PRIMARY,
+                color: Colors.WHITE,
+              },
+              order?.orderStatus === 'Canceled' && {
+                backgroundColor: 'red',
+                color: Colors.WHITE,
+              },
+              !order?.orderStatus && { color: Colors.PRIMARY, backgroundColor: Colors.LIGHT_PRIMARY },
+            ]}
+          >
+            {order?.orderStatus || 'No Status'}
+          </Text>
+        }
+
+        {order?.id ?
+          <Text style={{
+            fontFamily: 'outfit',
+            color: Colors.GRAY, fontSize: 16
+          }}>
+            {order.date} at {order.time}
+          </Text> : null}
+
       </View>
 
     </TouchableOpacity>
@@ -46,7 +77,7 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     display: 'flex',
-    gap: 7,
+    gap: 5,
   },
   image: {
     width: 100,
