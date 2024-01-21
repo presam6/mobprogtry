@@ -47,14 +47,14 @@ export default function BookingModal({ businessId, hideModal }) {
     const createNewOrder = () => {
         if (!selectedTime || !selectedDate) {
             ToastAndroid.show('Please Choose Date and Time!', ToastAndroid.LONG)
-            
+
             return;
         }
         const data = {
             userName: user?.fullName,
             userEmail: user?.primaryEmailAddress.emailAddress,
             time: selectedTime,
-            date: moment(selectedDate).format('DD-MMM-YYYY'),
+            date: moment(selectedDate).format('YYYY-MM-DD'),
             // note: note,
             businessId: businessId,
         }
