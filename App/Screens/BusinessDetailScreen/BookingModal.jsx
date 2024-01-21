@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, TextInput, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, TextInput, ScrollView, KeyboardAvoidingView, ToastAndroid } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import PageHeading from '../../Components/PageHeading'
 import { AntDesign } from '@expo/vector-icons';
@@ -6,17 +6,22 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import CalendarPicker from 'react-native-calendar-picker';
 import Colors from '../../Utils/Colors';
 import Heading from '../../Components/Heading';
+import GlobalAPI from '../../Utils/GlobalAPI';
+import { useUser } from '@clerk/clerk-expo';
+import moment from 'moment';
 
-export default function BookingModal({ hideModal }) {
+export default function BookingModal({ businessId, hideModal }) {
 
     const [timeList, setTimeList] = useState();
     const [selectedTime, setSelectedTime] = useState();
     const [selectedDate, setSelectedDate] = useState();
     const [note, setNote] = useState();
+    const { user } = useUser();
 
     useEffect(() => {
         getTime();
     }, [])
+
     const getTime = () => {
         const timeList = [];
         for (let i = 8; i <= 12; i++) {
@@ -36,6 +41,28 @@ export default function BookingModal({ hideModal }) {
             })
         }
         setTimeList(timeList);
+    }
+
+    // Create Order Method 
+    const createNewOrder = () => {
+        if (!selectedTime || !selectedDate) {
+            ToastAndroid.show('Please Choose Date and Time!', ToastAndroid.LONG)
+            
+            return;
+        }
+        const data = {
+            userName: user?.fullName,
+            userEmail: user?.primaryEmailAddress.emailAddress,
+            time: selectedTime,
+            date: moment(selectedDate).format('DD-MMM-YYYY'),
+            // note: note,
+            businessId: businessId,
+        }
+        GlobalAPI.createOrder(data).then(resp => {
+            console.log("Resp", resp)
+            ToastAndroid.show('Items Ordered Succesfully!', ToastAndroid.LONG)
+            hideModal();
+        })
     }
 
     return (
@@ -92,7 +119,7 @@ export default function BookingModal({ hideModal }) {
                 </View>
 
                 {/* Confirmation Button */}
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => createNewOrder()}>
                     <Text style={styles.confirmBtn}> Confirm & Order </Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
