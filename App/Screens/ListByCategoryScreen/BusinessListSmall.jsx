@@ -1,44 +1,71 @@
-import { View, Text, Image, StyleSheet } from 'react-native'
-import React from 'react'
-import Colors from '../../Utils/Colors'
+import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import Colors from '../../Utils/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-export default function BusinessListSmall({ business }) {
-    return (
-        <View style={styles.container}>
-            <Image source={{ uri: business?.images[0]?.url }}
-                style={styles.image}
-            />
+export default function BusinessListSmall({ business, order }) {
+  const navigation = useNavigation();
 
-            <View style={styles.infoContainer}>
-                <Text style={{ fontSize: 17, fontFamily: 'outfit-medium' }}> {business?.name} </Text>
-                <Text style={{ fontSize: 13, fontFamily: 'outfit', color: Colors.GRAY }}> {business?.contactPerson} </Text>
-                <Text style={{
-                    fontSize: 10, fontFamily: 'outfit', padding: 3,
-                    color: Colors.PRIMARY, backgroundColor: Colors.LIGHT_PRIMARY,
-                    borderRadius: 3, alignSelf: 'flex-start', paddingHorizontal: 7,
-                }}>
-                    {business?.category.name} </Text>
-            </View>
-        </View>
-    )
+  return (
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.push('business-detail', { business })}
+    >
+      <Image source={{ uri: business?.image?.url }} style={styles.image} />
+
+      <View style={styles.subContainer}>
+        <Text style={{ fontFamily: 'outfit-bold', fontSize: 15 }}>{business.name}</Text>
+
+        <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 12 }}>
+          <Ionicons name="person" size={12} color={Colors.PRIMARY} /> {business.contactPerson}
+        </Text>
+
+        {order ? (
+          <Text
+            style={{
+              padding: 5,
+              borderRadius: 5,
+              fontSize: 14,
+              alignSelf: 'flex-start',
+              backgroundColor: Colors.PRIMARY,
+              color: Colors.LIGHT_PRIMARY,
+            }}
+          >
+            {order.orderStatus}
+          </Text>
+        ) : null}
+
+        {order ? (
+          <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 15 }}>
+            {order.date} at {order.time}
+          </Text>
+        ) : null}
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 10,
-        backgroundColor: Colors.WHITE,
-        borderRadius: 15,
-        marginBottom: 10,
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 10,
-        alignItems: 'center'
-    },
-    image: {
-        width: 100,
-        height: 100,
-        borderColor: Colors.BLACK,
-        borderRadius: 15,
-        backgroundColor: Colors.LIGHT_PRIMARY,
-    }
-})
+  container: {
+    padding: 10,
+    backgroundColor: Colors.WHITE,
+    borderRadius: 15,
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
+  subContainer: {
+    display: 'flex',
+    gap: 5,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    borderColor: Colors.BLACK,
+    borderRadius: 15,
+    backgroundColor: Colors.LIGHT_PRIMARY,
+  },
+});

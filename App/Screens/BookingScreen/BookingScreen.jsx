@@ -28,20 +28,19 @@ export default function BookingScreen() {
 
   return (
     <View style={{ padding: 20 }}>
-      <Text style={{fontFamily: 'outfit-medium', 
-      fontSize: 26,}} > My Orders </Text>
+      <Text style={{
+        fontFamily: 'outfit-medium',
+        fontSize: 26,
+      }} > My Orders </Text>
 
       <View>
-        <FlatList 
-        data={bookingList}
-        onRefresh={getUserOrders}
-        refreshing={loading}
-        renderItem={({item, index}) => (
-          <BusinessListItem 
-          business={item?.businessList}
-          order={item} 
-          />
-        )}
+        <FlatList
+          data={bookingList}
+          onRefresh={getUserOrders}
+          refreshing={loading}
+          renderItem={({ item, index }) => (
+            <BusinessListSmall business={item?.businessList} order={item} />
+          )}
         />
       </View>
     </View>

@@ -36,7 +36,7 @@ export default function BusinessListItem({ business, order }) {
                 alignSelf: 'flex-start',
               },
               order?.orderStatus === 'Completed' && {
-                backgroundColor: Colors.PRIMARY,
+                backgroundColor: 'green',
                 color: Colors.WHITE,
               },
               order?.orderStatus === 'Canceled' && {
