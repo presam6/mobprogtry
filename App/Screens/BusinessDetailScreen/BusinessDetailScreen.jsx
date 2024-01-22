@@ -6,7 +6,6 @@ import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../Utils/Colors';
 import Heading from '../../Components/Heading';
 import BookingModal from './BookingModal';
-import PageHeading from '../../Components/PageHeading';
 
 export default function BusinessDetailScreen() {
   const param = useRoute().params;

@@ -9,6 +9,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import HomeNavigations from './HomeNavigations';
+import BookingNavigation from './BookingNavigation';
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
@@ -22,7 +23,7 @@ export default function TabNavigation() {
                 options={{
                     tabBarLabel: ({ color }) => (
                         <Text style={{
-                            color:color, fontSize: 12, fontWeight: "bold", marginTop: -7,
+                            color: color, fontSize: 12, fontWeight: "bold", marginTop: -7,
                         }}>Home</Text>
                     ),
                     tabBarIcon: ({ color, size }) => (
@@ -31,10 +32,10 @@ export default function TabNavigation() {
                 }}
             />
 
-            <Tab.Screen name='BOOKING' component={BookingScreen} options={{
+            <Tab.Screen name='BOOKING' component={BookingNavigation} options={{
                 tabBarLabel: ({ color }) => (
                     <Text style={{
-                        color:color, fontSize: 12, fontWeight: "bold", marginTop: -7,
+                        color: color, fontSize: 12, fontWeight: "bold", marginTop: -7,
                     }}>Orders</Text>
                 ),
                 tabBarIcon: ({ color, size }) => (
@@ -42,16 +43,16 @@ export default function TabNavigation() {
                 )
             }} />
 
-            <Tab.Screen name='PROFILE' component={ProfileScreen}  options={{
-            tabBarLabel: ({ color }) => (
-                <Text style={{
-                    color:color, fontSize: 12, fontWeight: "bold", marginTop: -7,
-                }}>Profile</Text>
-            ),
-            tabBarIcon:({color, size})=>(
-                <FontAwesome  name="user-circle-o" size={size} color={color} />
-            )
-        }}/>
+            <Tab.Screen name='PROFILE' component={ProfileScreen} options={{
+                tabBarLabel: ({ color }) => (
+                    <Text style={{
+                        color: color, fontSize: 12, fontWeight: "bold", marginTop: -7,
+                    }}>Profile</Text>
+                ),
+                tabBarIcon: ({ color, size }) => (
+                    <FontAwesome name="user-circle-o" size={size} color={color} />
+                )
+            }} />
         </Tab.Navigator>
     )
 }

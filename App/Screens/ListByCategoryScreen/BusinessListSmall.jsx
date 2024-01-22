@@ -10,7 +10,7 @@ export default function BusinessListSmall({ business, order }) {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.push('business-detail', { business })}
+      onPress={() => navigation.push('business-detail', { business:business })}
     >
       <Image source={{ uri: business?.image?.url }} style={styles.image} />
 

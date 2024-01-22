@@ -39,7 +39,9 @@ export default function BookingScreen() {
           onRefresh={getUserOrders}
           refreshing={loading}
           renderItem={({ item, index }) => (
-            <BusinessListSmall business={item?.businessList} order={item} />
+            <BusinessListSmall
+              business={item?.businessList}
+              order={item} />
           )}
         />
       </View>
