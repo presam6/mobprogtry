@@ -9,7 +9,7 @@ export default function BookingNavigation() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-            <Stack.Screen name='booking' component={BookingScreen}/>
+            <Stack.Screen name='order' component={BookingScreen}/>
             <Stack.Screen name='business-detail' component={BusinessDetailScreen}/>
 
         </Stack.Navigator>

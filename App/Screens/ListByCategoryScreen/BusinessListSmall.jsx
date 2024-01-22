@@ -15,10 +15,10 @@ export default function BusinessListSmall({ business, order }) {
       <Image source={{ uri: business?.image?.url }} style={styles.image} />
 
       <View style={styles.subContainer}>
-        <Text style={{ fontFamily: 'outfit-bold', fontSize: 15 }}>{business.name}</Text>
+        <Text style={{ fontFamily: 'outfit-bold', fontSize: 15 }}>{business?.name}</Text>
 
         <Text style={{ fontFamily: 'outfit', color: Colors.GRAY, fontSize: 12 }}>
-          <Ionicons name="person" size={12} color={Colors.PRIMARY} /> {business.contactPerson}
+          <Ionicons name="person" size={12} color={Colors.PRIMARY} /> {business?.contactPerson}
         </Text>
 
         {order ? (
